@@ -1,10 +1,9 @@
 package com.town.game.server;
 
-import com.town.game.dto.BuildingRequest;
-import com.town.game.dto.BuildingResponse;
+import com.town.game.dto.CityResponse;
+import com.town.game.dto.MapCityRequest;
 
 public interface WebService {
 
-    BuildingResponse build(BuildingRequest buildingRequest);
-
+    CityResponse createCityWithMap(MapCityRequest mapCityRequest);
 }

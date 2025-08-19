@@ -19,7 +19,7 @@ public class Cell {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "map_id")
-    private Map map;
+    private GameMap gameMap;
     private Long x;
     private Long y;
     @Enumerated(EnumType.STRING)

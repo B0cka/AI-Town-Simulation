@@ -23,8 +23,8 @@ public class City {
     private Long userCount;
     private Long happiness;
     private Long coins;
-    @OneToOne(mappedBy = "city", cascade = CascadeType.ALL)
-    private Map map;
+    @OneToOne(mappedBy = "city", cascade = CascadeType.ALL, optional = true)
+    private GameMap gameMap;
 
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     private List<Building> buildings = new ArrayList<>();

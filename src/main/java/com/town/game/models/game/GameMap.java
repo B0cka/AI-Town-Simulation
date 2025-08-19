@@ -14,17 +14,17 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Data
-public class Map {
+public class GameMap {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    @JoinColumn(name = "city_Id")
+    @JoinColumn(name = "city_id")
     private City city;
     private Long width;
     private Long height;
-    @OneToMany(mappedBy = "map", cascade = CascadeType.ALL)
+    @OneToMany
     private List<Cell> cells = new ArrayList<>();
 
 }
