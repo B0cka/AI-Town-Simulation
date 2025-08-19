@@ -18,8 +18,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class WebServiceImpl implements WebService{
 
-    private CityRepository cityRepository;
-    private GameMapRepository gameMapRepository;
+    private final CityRepository cityRepository;
+    private final GameMapRepository gameMapRepository;
 
     @Override
     @Transactional

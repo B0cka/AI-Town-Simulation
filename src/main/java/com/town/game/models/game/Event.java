@@ -15,19 +15,18 @@ import java.util.Map;
 @Builder
 @Data
 public class Event {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne()
-    @JoinColumn(name = "city_Id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "city_id")
     private City city;
+
     private String prompt;
 
     @ElementCollection
     @CollectionTable(name = "event_effects", joinColumns = @JoinColumn(name = "event_id"))
     @MapKeyColumn(name = "choice_key")
     private Map<String, Effects> orders = new HashMap<>();
-
 }

@@ -13,16 +13,20 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class Cell {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "map_id")
     private GameMap gameMap;
+
     private Long x;
     private Long y;
+
     @Enumerated(EnumType.STRING)
     private CellsType type;
 
+    @OneToOne(mappedBy = "cell", cascade = CascadeType.ALL)
+    private Building building;
 }

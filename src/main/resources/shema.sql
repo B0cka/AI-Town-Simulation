@@ -1,0 +1,50 @@
+
+CREATE TABLE IF NOT EXISTS city (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    happiness BIGINT DEFAULT 50,
+    coins BIGINT DEFAULT 100
+);
+
+CREATE TABLE IF NOT EXISTS game_map (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    city_id BIGINT NOT NULL,
+    width BIGINT NOT NULL,
+    height BIGINT NOT NULL,
+    FOREIGN KEY (city_id) REFERENCES city(id)
+);
+
+CREATE TABLE IF NOT EXISTS cell (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    map_id BIGINT NOT NULL,
+    x BIGINT NOT NULL,
+    y BIGINT NOT NULL,
+    type VARCHAR(20) DEFAULT 'GRASS',
+    FOREIGN KEY (map_id) REFERENCES game_map(id)
+);
+
+
+CREATE TABLE IF NOT EXISTS building (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    city_id BIGINT NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    x BIGINT NOT NULL,
+    y BIGINT NOT NULL,
+    FOREIGN KEY (city_id) REFERENCES city(id)
+);
+
+CREATE TABLE IF NOT EXISTS event (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    city_id BIGINT NOT NULL,
+    description TEXT NOT NULL,
+    FOREIGN KEY (city_id) REFERENCES city(id)
+);
+
+CREATE TABLE IF NOT EXISTS event_option (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    event_id BIGINT NOT NULL,
+    choice_text VARCHAR(255) NOT NULL,
+    happiness_change BIGINT DEFAULT 0,
+    coins_change BIGINT DEFAULT 0,
+    FOREIGN KEY (event_id) REFERENCES event(id)
+);

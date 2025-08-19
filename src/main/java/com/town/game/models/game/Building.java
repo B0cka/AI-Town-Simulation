@@ -13,16 +13,21 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class Building {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Enumerated(EnumType.STRING)
     private BuildingType buildingType;
+
     private Long x;
     private Long y;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
     private City city;
 
+    @OneToOne
+    @JoinColumn(name = "cell_id")
+    private Cell cell;
 }
